@@ -19,7 +19,7 @@ public class DamageAttack : MonoBehaviour
         IDamageable damageable = other.GetComponent<IDamageable>();
         if (damageable != null)
         {
-            damageable.TakeDamage(5);
+            damageable.TakeDamage(1);
         }
     }
 }

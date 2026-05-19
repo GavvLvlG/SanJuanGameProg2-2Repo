@@ -3,32 +3,37 @@ using UnityEngine;
 public class EnemyControl : MonoBehaviour, IDamageable
 {
     public Animator animator;
-    public float maxHealth;
+    public float maxHealth = 100f;
     public float currentHealth;
 
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        //animator = GetComponent<Animator>();
+        if (animator == null)
+            animator = GetComponent<Animator>();
+
         currentHealth = maxHealth;
     }
 
-    // Update is called once per frame
     void Update()
     {
-        
+       
     }
 
     public void TakeDamage(float damage)
     {
+        currentHealth -= damage;
         animator.SetTrigger("IsHit");
-        Debug.Log("Hit!");
-        currentHealth = damage;
+        Debug.Log("Hit! Current Health: " + currentHealth);
+
+        if (currentHealth <= 0)
+        {
+            Die();
+        }
     }
 
     public void Die()
     {
-        //animator.SetTrigger("Death");
+        animator.SetTrigger("IsDead");
         Debug.Log("Dead");
     }
 
@@ -36,5 +41,4 @@ public class EnemyControl : MonoBehaviour, IDamageable
     {
         return currentHealth;
     }
-
 }
