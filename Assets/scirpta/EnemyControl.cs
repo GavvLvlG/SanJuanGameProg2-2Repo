@@ -34,7 +34,7 @@ public class EnemyControl : MonoBehaviour, IDamageable
     public void Die()
     {
         animator.SetTrigger("IsDead");
-        Debug.Log("Dead");
+        Debug.Log("Dead. Not Big Surprise.");
     }
 
     public float GetHealth()
